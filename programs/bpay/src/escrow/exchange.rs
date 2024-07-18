@@ -34,7 +34,7 @@ pub struct Exchange<'info> {
         mut,
         has_one = mint,
         constraint = taker_ata.amount >= escrow.taker_amount,
-        seeds=[b"state", escrow.seed.to_le_bytes().as_ref()],
+        seeds=[b"state", initializer.key().as_ref(), escrow.seed.to_le_bytes().as_ref()],
         bump = escrow.bump,
     )]
     pub escrow: Account<'info, Escrow>,

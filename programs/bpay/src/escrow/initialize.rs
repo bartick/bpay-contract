@@ -20,7 +20,7 @@ pub struct Initialize<'info> {
         init,
         payer = initializer,
         space = 8 + Escrow::INIT_SPACE,
-        seeds = [b"state".as_ref(), &seed.to_le_bytes()],
+        seeds = [b"state".as_ref(), initializer.key().as_ref(), &seed.to_le_bytes()],
         bump
     )]
     pub escrow: Account<'info, Escrow>,

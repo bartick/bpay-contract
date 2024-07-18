@@ -6,7 +6,7 @@ pub use escrow::*;
 pub mod state;
 pub use state::*;
 
-declare_id!("6pekx4ZX86H6QqSKUD4NxM1HVLgcL8cyP42uMej9HauC");
+declare_id!("DsFCn7DrZ8VV5kwufpwLDs96BmpjdjcMeBF7A4dcX58q");
 
 #[program]
 mod gpay {
