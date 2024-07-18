@@ -61,4 +61,8 @@ impl<'info> Exchange<'info> {
         };
         CpiContext::new(self.token_program.to_account_info(), cpi_accounts)
     }
+
+    pub fn close(&mut self) -> Result<()> {
+        self.escrow.close(self.taker_ata.to_account_info())
+    }
 }

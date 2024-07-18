@@ -6,7 +6,7 @@ pub use escrow::*;
 pub mod state;
 pub use state::*;
 
-declare_id!("DsFCn7DrZ8VV5kwufpwLDs96BmpjdjcMeBF7A4dcX58q");
+declare_id!("HsJ8eBYS75GzUBDBMjSrhm1hY8r1ipeVbrM9FdZ5fqqQ");
 
 #[program]
 mod gpay {
@@ -20,6 +20,7 @@ mod gpay {
 
     pub fn exchange(ctx: Context<Exchange>) -> Result<()> {
         ctx.accounts.deposit()?;
+        ctx.accounts.close()?;
         Ok(())
     }
 }
