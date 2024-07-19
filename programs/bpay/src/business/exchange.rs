@@ -5,10 +5,10 @@ use anchor_spl::{
     token_interface::{Mint, TokenInterface},
 };
 
-use crate::Escrow;
+use crate::state::Merchant;
 
 #[derive(Accounts)]
-pub struct Exchange<'info> {
+pub struct MerchantExchange<'info> {
     #[account(mut)]
     pub taker: Signer<'info>,
     #[account(mut)]
@@ -37,13 +37,13 @@ pub struct Exchange<'info> {
         seeds=[b"state", initializer.key().as_ref(), escrow.seed.to_le_bytes().as_ref()],
         bump = escrow.bump,
     )]
-    pub escrow: Account<'info, Escrow>,
+    pub escrow: Account<'info, Merchant>,
     pub associated_token_program: Program<'info, AssociatedToken>,
     pub token_program: Interface<'info, TokenInterface>,
     pub system_program: Program<'info, System>,
 }
 
-impl<'info> Exchange<'info> {
+impl<'info> MerchantExchange<'info> {
     pub fn deposit(&mut self) -> Result<()> {
         transfer_checked(
             self.into_deposit_context(),
